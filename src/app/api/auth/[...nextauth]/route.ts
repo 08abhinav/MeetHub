@@ -1,9 +1,11 @@
 import NextAuth, { AuthOptions, Account, Session, User } from "next-auth";
 import { JWT } from "next-auth/jwt";
+import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
+import bcrypt from 'bcrypt'
 
 export const authOptions:AuthOptions = {
   providers: [
@@ -14,7 +16,27 @@ export const authOptions:AuthOptions = {
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID || "",
       clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
-    }),
+    }),  
+    CredentialsProvider({
+      name: "Credentials",
+      credentials:{
+        email: {label: "Email", type: "email"},
+        password: {label: "passowrd", type: "password"},
+      },
+      async authorize(credentials:any){
+        await dbConnect();
+        const user = await UserModel.findOne({email: credentials?.email});
+        if(!user) throw new Error("No user found");
+
+        const isValid = await bcrypt.compare(credentials?.password, user.password);
+        if(!isValid) throw new Error("Invalid credentials")
+
+        return{
+          id: user._id.toString(),
+          email: user.email
+        }
+      }
+    })
   ],
   callbacks: {
     async jwt({ token, user, account }: { 
@@ -25,12 +47,19 @@ export const authOptions:AuthOptions = {
       if (user && account) {
         token.id = user.id;
         token.accessToken = account.access_token;
+
+        const dbUser = await UserModel.findOne({email: user.email})
+        if (dbUser) {
+          token.picture = dbUser.profilePicture;
+        }
       }
       return token;
     },
+
     async session({ session, token }: { session: Session; token: JWT }) {
       if (session.user) {
-        (session.user as { id: string }).id = token.id as string;
+        (session.user as { id: string, image?: string}).id = token.id as string;
+        session.user.image = token.picture as string;
       }
       return session;
     },
@@ -52,7 +81,7 @@ export const authOptions:AuthOptions = {
         console.log("Error in signIn callback", error);
         return false;
       }
-    }
+    },
   },
   session: {
     strategy: 'jwt',
