@@ -1,11 +1,11 @@
 "use client"
 import React,{useState} from 'react'
 import Image from 'next/image'
-import Link from 'next/link';
 import Loader from '../components/Loader'
 import { signIn } from 'next-auth/react'
 import { Button } from "@/components/ui/button"
 import { toast } from 'react-toastify';
+import Login from '../components/Login';
 
 
 const page = () => {
@@ -57,18 +57,6 @@ const page = () => {
                     </Button>
                 </div>
 
-                {/* separator */}
-                <div className="flex flex-col space-y-4 mt-6">
-                    <div className="relative w-full">
-                        <div className="absolute inset-0 flex items-center">
-                            <span className="w-full border-t border-[#948979]"></span>
-                        </div>
-                        <div className="relative flex justify-center text-xs uppercase">
-                            <span className="bg-[#948979] px-2 text-black text-md font-semibold">or</span>
-                        </div>
-                    </div>
-                </div>
-
                 {/* Github Login */}
                 <div className='space-y-4 mt-6'>
                     <Button className='w-full bg-gradient-to-r from-[#464a50] to-[#948979] text-black 
@@ -95,12 +83,20 @@ const page = () => {
                     </Button>
                 </div>
 
-                <p className='text-sm font-semibold text-center text-[#948979] mt-6'>
-                    Don't have an account ?
-                    <Link href='#' className='mx-2 text-sm text-blue-300 font-semibold hover:text-blue-500 hover:underline'>
-                        Create now
-                    </Link>
-                </p>
+                {/* separator */}
+                <div className="flex flex-col space-y-4 mt-6">
+                    <div className="relative w-full">
+                        <div className="absolute inset-0 flex items-center">
+                            <span className="w-full border-t border-[#948979]"></span>
+                        </div>
+                        <div className="relative flex justify-center text-xs uppercase">
+                            <span className="bg-[#948979] px-2 text-black text-md font-semibold">or</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Login form */}
+                <Login/>
             </div>
         </div>
     </div>
