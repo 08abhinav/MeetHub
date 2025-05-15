@@ -62,7 +62,7 @@ export const MeetingAction = () => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
-              className='w-full sm:w-auto text-[#DFD0B8] bg-gradient-to-r from-[#464a50] to-[#5a5c5e] 
+              className='w-full sm:w-auto text-[#DFD0B8] bg-[#3C3D37] border border-[#5c6067] font-semibold 
               shadow-lg cursor-pointer hover:shadow-xl focus:!bg-transparent active:!bg-transparent'
               size="lg">
               <Video className='w-5 h-5 mr-2' />
@@ -70,17 +70,17 @@ export const MeetingAction = () => {
             </Button>
           </DropdownMenuTrigger>
 
-          <DropdownMenuContent className='bg-gradient-to-r from-[#464a50] to-[#5a5c5e] border text-[#DFD0B8] w-[250px] ml-6 rounded-lg'>
+          <DropdownMenuContent className='bg-[#3C3D37] border border-[#5c6067] text-[#DFD0B8] w-[250px] ml-6 rounded-lg'>
             {/* Meeting for later */}
             <DropdownMenuItem onClick={handleMeeting} 
-            className='text-[#DFD0B8] hover:bg-[#5a5c5e] cursor-pointer flex items-center p-4 rounded-lg'>
+            className='text-[#DFD0B8] hover:bg-[#696a62] cursor-pointer flex items-center p-4 rounded-lg'>
               <Link2 className='w-4 h-4 mr-2' />
               Create a meeting for later
             </DropdownMenuItem>
 
             {/* Instant meeting */}
             <DropdownMenuItem onClick={handleInstantMeeting}
-            className='text-[#DFD0B8] hover:bg-[#5a5c5e] cursor-pointer flex items-center p-4 rounded-lg'>
+            className='text-[#DFD0B8] hover:bg-[#696a62] cursor-pointer flex items-center p-4 rounded-lg'>
               <Plus className='w-4 h-4 mr-2'/>
               Start an instant meeting
             </DropdownMenuItem>
@@ -93,13 +93,13 @@ export const MeetingAction = () => {
             <LinkIcon className='w-4 h-4 text-[#DFD0B8]'/>
           </span>
           <Input 
-          className='pl-8 shadow-lg text-[#DFD0B8] rounded-r-none pr-10 bg-gradient-to-r from-[#464a50] to-[#5a5c5e] '
+          className='pl-8 shadow-lg text-[#DFD0B8] rounded-r-none pr-10 bg-[#3C3D37] border border-[#5c6067] font-semibold border-none'
           placeholder='Enter a code or link'
           value={meetingLink}
           onChange={(e)=>{setMeetingLink(e.target.value)}}/>
         <Button
           variant="secondary"
-          className="rounded-l-none text-[#DFD0B8] ml-1 bg-[#5a5c5e] cursor-pointer hover:bg-[#595a5b] focus:bg-[#595a5b] active:bg-[#595a5b] shadow-lg"
+          className="rounded-l-none text-[#DFD0B8] ml-1 bg-[#3C3D37] border border-[#5c6067] cursor-pointer hover:bg-[#696a62] focus:bg-[#696a62] active:bg-[#696a62]"
           onClick={handleJoinMeeting}>
           Join
         </Button>
@@ -108,20 +108,20 @@ export const MeetingAction = () => {
       </div>
       {/* dialog box */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="rounded-3xl bg-gradient-to-r from-[#464a50] to-[#5a5c5e] border border-[#6b6c6f] text-[#DFD0B8] w-[400px]">
-          <DialogTitle className="text-3xl font-normal text-[#DFD0B8] text-center mb-4">
+        <DialogContent className="rounded-3xl bg-black border border-[#6b6c6f] text-[#DFD0B8] w-[400px]">
+          <DialogTitle className="text-3xl font-normal text-[#DFD0B8] text-center mb-4 font-mono">
               Here's your joining information
           </DialogTitle>
           <div className="flex flex-col items-center justify-center">
             <span className="text-[#DFD0B8] font-semibold text-lg mb-2">
-              {generatedUrl.slice(0, 30)}...
+              {generatedUrl.slice(0, 35)}...
             </span>
             <Button
               variant="ghost"
-              className="bg-[#5a5c5e] text-[#DFD0B8] hover:bg-[#595a5b] focus:bg-[#595a5b] active:bg-[#595a5b] shadow-lg cursor-pointer"
+              className="bg-[#000] text-[#DFD0B8] hover:cursor-pointer"
               onClick={copyToClipboard}
             >
-              <Copy className="w-5 h-5" />
+              <Copy className="w-5 h-5 bg-[#000] hover:text-lg" />
             </Button>
           </div>
         </DialogContent>
