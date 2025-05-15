@@ -78,7 +78,7 @@ const Header = () => {
         <DropdownMenu open={open} onOpenChange={setOpen}>
           <DropdownMenuTrigger asChild>
             {/* user image */}
-            <Avatar className='cursor-pointer text-[#DFD0B8] h-8 w-8'>
+            <Avatar className='cursor-pointer text-[#DFD0B8] h-8 w-8 rounded-full shadow-[0_0_10px_rgba(255,200,150,0.6),0_0_20px_rgba(255,200,150,0.5),0_0_40px_rgba(255,200,150,0.4)]'>
                 {session?.user?.image ? (
                   <AvatarImage
                     className='rounded-full'
@@ -86,14 +86,14 @@ const Header = () => {
                     alt={session?.user?.name ?? "user"}
                   />
                 ) : (
-                  <AvatarFallback className='text-lg text-[#DFD0B8]'>
+                  <AvatarFallback className='flex items-center justify-center w-full h-full text-lg text-[#DFD0B8]'>
                     {userPlaceHolder}
                   </AvatarFallback>
                 )}
             </Avatar>
           </DropdownMenuTrigger>
 
-          <DropdownMenuContent align="end" className='w-80 p-4 bg-[#464a50] rounded-xl shadow-lg border z-[999]'>
+          <DropdownMenuContent align="end" className='w-80 p-4 backdrop-blur-lg bg-black/20 rounded-xl z-[999]'>
             {/* user email */}
             <div className='flex justify-between items-center mb-4'>
               <span className='text-sm font-bold text-[#DFD0B8]'>
@@ -126,13 +126,13 @@ const Header = () => {
             </div>
             <div className='flex mb-4'>
               {/* Add account */}
-              <Button className='w-1/2 h-14 rounded-l-full cursor-pointer text-[#DFD0B8]' variant="outline">
+              <Button className='w-1/2 h-14 rounded-l-full cursor-pointer font-semibold text-[#DFD0B8]' variant="outline">
                 <Plus className='h-4 w-4 mr-2'/>
                 Add Account
               </Button>
               
               {/* Logout */}
-              <Button className='w-1/2 h-14 rounded-r-full cursor-pointer text-[#DFD0B8]' variant="outline" onClick={handleLogout}>
+              <Button className='w-1/2 h-14 rounded-r-full cursor-pointer font-semibold text-[#DFD0B8]' variant="outline" onClick={handleLogout}>
                 <LogOut className='h-4 w-4 mr-2'/>
                   SignOut
               </Button>
