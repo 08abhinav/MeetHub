@@ -25,6 +25,7 @@ const Login = () => {
         }else{
             router.push('/dashboard')
         }
+        setIsLoading(false);
         setEmail('')
         setPassword('')
     }
@@ -52,7 +53,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#464a50] to-[#948979] text-white border border-[#5c6067] focus:outline-none focus:ring-2 focus:ring-[#DFD0B8]"
+                className="px-4 py-2 rounded-lg bg-[#3C3D37] text-white border border-[#5c6067] focus:outline-none focus:ring-2 focus:ring-[#DFD0B8]"
                 required
             />
             </div>
@@ -67,7 +68,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="********"
-                className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#464a50] to-[#948979] text-white border border-[#5c6067] focus:outline-none focus:ring-2 focus:ring-[#DFD0B8]"
+                className="px-4 py-2 rounded-lg bg-[#3C3D37] text-white border border-[#5c6067] focus:outline-none focus:ring-2 focus:ring-[#DFD0B8]"
                 required
             />
             </div>
@@ -75,14 +76,14 @@ const Login = () => {
             {/* Submit Button */}
             <button
             type="submit"
-            className="w-full py-1 bg-gradient-to-r from-[#464a50] to-[#948979] text-black rounded-md hover:bg-[#3b3d3f] 
+            className="w-full py-1 bg-[#3C3D37] text-[#DFD0B8] rounded-md hover:bg-[#3e3f41] 
             transition duration-500 cursor-pointer hover:text-[#DFD0B8] text-lg font-semibold">
                 {isLoading ? (<Loader/>): ("Login")}
             </button>
         </form>
 
         {/* not have an account */}
-        <p className='font-semibold text-center text-black mt-4'>
+        <p className='font-semibold text-center text-[#DFD0B8] mt-4'>
             Don't have an account ?
             <button
                 onClick={handleSigUp}
