@@ -34,7 +34,7 @@ const MeetingFeature = () => {
 
   return (
     <div className='flex flex-col items-center'>
-      <div className='relative'>
+      <div className='relative rounded-full shadow-[0_0_10px_rgba(255,200,150,0.5),0_0_20px_rgba(255,200,150,0.4),0_0_40px_rgba(255,200,150,0.3)]'>
         <Image
           src={slides[currentSlide].image}
           alt="meeting-image" 
