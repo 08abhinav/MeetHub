@@ -7,7 +7,7 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import bcrypt from 'bcrypt'
 
-export const authOptions:AuthOptions = {
+export const authOptions:AuthOptions = {  
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
@@ -20,7 +20,7 @@ export const authOptions:AuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials:{
-        email: {label: "Email", type: "email"},
+        email: {label: "email", type: "email"},
         password: {label: "passowrd", type: "password"},
       },
       async authorize(credentials:any){
@@ -51,6 +51,7 @@ export const authOptions:AuthOptions = {
         const dbUser = await UserModel.findOne({email: user.email})
         if (dbUser) {
           token.picture = dbUser.profilePicture;
+          token.name = dbUser.fname;
         }
       }
       return token;
@@ -58,8 +59,9 @@ export const authOptions:AuthOptions = {
 
     async session({ session, token }: { session: Session; token: JWT }) {
       if (session.user) {
-        (session.user as { id: string, image?: string}).id = token.id as string;
+        (session.user as { id: string, image?: string, name?: string}).id = token.id as string;
         session.user.image = token.picture as string;
+        session.user.name = token.name as string;
       }
       return session;
     },
@@ -69,7 +71,7 @@ export const authOptions:AuthOptions = {
         let currUser = await UserModel.findOne({ email: user.email });
         if (!currUser && profile) {
           currUser = await UserModel.create({
-            name: profile?.name,
+            fname: profile?.name,
             email: profile?.email,
             profilePicture: profile?.picture,
             isVerified: profile?.email_verified ? true : false
