@@ -36,10 +36,10 @@ const page = () => {
            if(!res.ok){
                 toast.error("something went wrong");
                 console.error("signup error: ", data.message)
+           }else{
+            toast.success("signup successful")
            }
-            
-           toast.success("signup successful")
-           route.push('/')
+           route.push('/user-auth')
 
         }catch(error){
             console.error("signup error: ", error);
@@ -52,10 +52,10 @@ const page = () => {
     }
 
   return (
-    <div className='flex justify-center bg-[#393E46] h-screen w-full'>
-        <div className='flex flex-col justify-center items-center bg-gradient-to-r from-[#383c41] to-[#464a50] 
-        h-auto w-[90%] md:w-1/2 m-4 border-2 border-[#464a50] rounded-2xl shadow-lg p-8'>
-            <div className='text-[#DFD0B8] font-bold text-3xl mb-6'>
+    <div className='flex justify-center bg-[#000] h-screen w-full'>
+        <div className='flex flex-col justify-center items-center bg-[#28282B] 
+        h-auto w-[90%] md:w-1/2 m-4 border-2 border-[#404143] rounded-2xl p-8'>
+            <div className='text-[#DFD0B8] font-bold text-3xl mb-6 font-sans'>
                 Create your MeetHub account
             </div>
             {isLoading && <Loader/>}
@@ -123,7 +123,7 @@ const page = () => {
 
             {/* home redirect */}
             <div className='flex flex-col'>
-                <p className='text-blue-400'>Already have an account? <Link href="/user-auth" className='text-blue-400 hover:underline hover:text-blue-500 cursor-pointer'>Login</Link></p>
+                <p className='text-[#DFD0B8]'>Already have an account? <Link href="/user-auth" className='text-blue-400 hover:underline hover:text-blue-500 cursor-pointer'>Login</Link></p>
             </div>
 
             {/* Submit Button */}
