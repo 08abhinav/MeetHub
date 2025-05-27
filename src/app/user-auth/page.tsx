@@ -6,10 +6,12 @@ import { signIn } from 'next-auth/react'
 import { Button } from "@/components/ui/button"
 import { toast } from 'react-toastify';
 import Login from '../components/Login';
+import { useRouter } from 'next/navigation'
 
 
 const page = () => {
     const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
     const url = process.env.NEXTAUTH_URL
 
     const handleLogin = async(provider:any)=>{
@@ -17,6 +19,7 @@ const page = () => {
         try {
             await signIn(provider,{callbackUrl: url})
             toast.info(`Logging with ${provider}`)
+            router.push('/dashboard')
         } catch (error) {
             toast.error(`failed login with ${provider}`)
         }finally{
@@ -24,7 +27,7 @@ const page = () => {
         }
     }
   return (
-    <div className='flex min-h-screen bg-gradient-to-r from-[#222831] to-[#464a50]'>
+    <div className='flex min-h-screen bg-black'>
         {isLoading && <Loader/>}
         <div className='hidden w-1/2 bg-[#393E46] lg:block'>
             <Image src="/images/meeting.jpg"
@@ -40,9 +43,8 @@ const page = () => {
                 <p className='mb-8 text-[#948979] font-semibold'>Next-gen support platform for agile teams.</p>
                 {/* Google Login */}
                 <div className='space-y-4'>
-                    <Button className='w-full bg-gradient-to-r from-[#464a50] to-[#948979] text-black 
-                    font-semibold border-none shadow-md hover:shadow-lg cursor-pointer hover:bg-[#a79e8f] hover:text-[#DFD0B8]
-                    text-lg' 
+                    <Button className='w-full bg-[#3C3D37] text-[#DFD0B8] font-semibold border-none hover:shadow-lg cursor-pointer
+                    hover:bg-[#3e3f41]  text-lg transition duration-500' 
                     variant="outline"
                     onClick={()=>handleLogin('google')}
                     >
@@ -59,8 +61,8 @@ const page = () => {
 
                 {/* Github Login */}
                 <div className='space-y-4 mt-6'>
-                    <Button className='w-full bg-gradient-to-r from-[#464a50] to-[#948979] text-black 
-                    border-none shadow-md font-semibold hover:shadow-lg cursor-pointer hover:text-[#DFD0B8] hover:bg-[#a79e8f] text-lg'
+                    <Button className='w-full bg-[#3C3D37] text-[#DFD0B8] border-none shadow-md font-semibold hover:shadow-lg cursor-pointer 
+                    hover:bg-[#3e3f41] text-lg transition duration-500'
                     variant="outline" 
                     onClick={()=>handleLogin('github')}
                     >
