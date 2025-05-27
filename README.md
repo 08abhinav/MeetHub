@@ -40,7 +40,22 @@ npm install
 
 # 3. Create environment file
 cp .env.example .env.local
-# Fill in the required keys (see below)
+MONGODB_URI=your-mongodb-url
+
+JWT_SECRET_KEY=your-jwt-secret-key
+
+GITHUB_CLIENT_ID=your-github-client-id
+GITHUB_CLIENT_SECRET=your-github-client-secret
+
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+NEXTAUTH_SECRET=your-secret
+NEXTAUTH_URL=http://localhost:3000
+
+ZEGOCLOUD_APP_ID=your-zegocloud-app-id
+ZEGOCLOUD_SERVER_SECRET=your-zegocloud-server-secret
+
 
 # 4. Run the app locally
 npm dev
