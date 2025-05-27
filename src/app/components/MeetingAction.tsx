@@ -4,14 +4,13 @@ import { Input } from '@/components/ui/input';
 import { v4 as uuidv4 } from 'uuid';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
 import { Copy, Link2, LinkIcon, Loader2, Plus, Video } from 'lucide-react';
-import { useSession } from 'next-auth/react'
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import Loader from './Loader';
 
 export const MeetingAction = () => {
-  const {data: session} = useSession();
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [baseUrl, setBaseUrl] = useState('');
