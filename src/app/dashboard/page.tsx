@@ -28,7 +28,7 @@ export default function Home() {
     return <Loader/>
   }
   return (
-    <div className="flex flex-col min-h-screen bg-[#393E46]">
+    <div className="flex flex-col min-h-screen bg-[#000]">
       <Header/>
       <main className="flex-grow p-8 pt-32">
         <div className="max-width-7xl mx-auto">
