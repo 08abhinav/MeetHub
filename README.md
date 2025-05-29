@@ -24,7 +24,6 @@ A modern Google Meet clone built with Next.js, TypeScript, and ZEGOCLOUD for rea
 | Styling        | Tailwind CSS, Shadcn/UI                   |
 | Fonts          | Geist Sans, Geist Mono (Google Fonts)     |
 | Real-time Comm | ZEGOCLOUD API                             |
-| Deployment     | Vercel                                    |
 
 ---
 
